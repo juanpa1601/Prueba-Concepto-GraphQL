@@ -1,0 +1,73 @@
+type Query{
+    Users:[User]
+    SearchUserById(id:ID): User
+    
+    Theaters:[Theater]
+    SearchTheaterById(id:ID): Theater
+
+}
+
+type Mutation{
+    CreateUser(data: CreateUserInput): User
+    UpdateUser(id: ID, data: CreateUserInput): User
+    DeleteUser(id: ID): User
+    
+    CreateTheater(data: CreateTheaterInput): Theater
+    
+}
+
+type User{
+    _id: ID
+    name: String
+    email: String
+    password: String
+}
+
+type Theater{
+    _id: ID
+    theaterId: Int
+    location: Location
+}
+
+type Location{
+    address: Address
+}
+
+type Address{
+    street1: String
+    city: String
+    state: String
+    zipcode: String
+}
+
+type Geo{
+    type: String
+    coodinates: [Latitudes]
+}
+
+type Latitudes{
+    cero: Float
+    one: Float
+}
+
+input CreateUserInput{
+    name: String
+    email: String
+    password: String
+}
+
+input CreateTheaterInput{
+    theaterId: Int
+    location: CreateLocationInput
+}
+
+input CreateLocationInput{
+    address: CreateAddressInput
+}
+
+input CreateAddressInput{
+    street1: String
+    city: String
+    state: String
+    zipcode: String
+}
